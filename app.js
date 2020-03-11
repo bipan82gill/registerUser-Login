@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');        
 
 const path = require('path');
 const pageRouter= require('./routes/pages');
@@ -10,6 +11,17 @@ app.use(express.static(path.join(__dirname,'public')));
 //template engine
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine', 'pug');
+
+// session
+app.use(session({
+    secret:'registeruser_secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60 * 1000 * 30
+    }
+}));
+
 //router
 app.use('/',pageRouter);
 //error
