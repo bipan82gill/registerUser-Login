@@ -1,5 +1,9 @@
 const express= require('express');
 const router =express.Router();
+const User = require('../core/user');
+
+
+const user = new User();
 //get route for index page
 router.get('/',(req,res,next)=>{
     res.render('index',{title:"My application"});
@@ -20,7 +24,18 @@ router.post('/login', (req,res,next)=>{
 });
 //post route for register data
 router.post('/register', (req,res,next)=>{
-    res.json(req.body);
+    let userInput ={
+       username: req.body.username,
+       fullname: req.body.fullname,
+       password: req.body.password
+    };
+    user.create(userInput, function(lastId){
+        if(lastId){
+            res.send('Welcome '+userInput.username);
+        }else{
+            console.log('Error creating a new user ......');
+        }
+    })
 })
 
 module.exports = router;

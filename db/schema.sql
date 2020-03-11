@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS logindb;
 CREATE DATABASE logindb;
 USE logindb;
  CREATE TABLE users(

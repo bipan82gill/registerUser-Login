@@ -1,9 +1,7 @@
 const express = require('express');
-const User = require('./core/user');
+
 const path = require('path');
 const pageRouter= require('./routes/pages');
-
-const user = new User();
 
 const app = express();
 // serve static pages
@@ -15,7 +13,7 @@ app.set('view engine', 'pug');
 //router
 app.use('/',pageRouter);
 //error
-app.use((req,res,next)=>{
+app.use( (req,res,next)=>{
     var err = new Error('Pages not found');
     err.status = 404;
     next(err);

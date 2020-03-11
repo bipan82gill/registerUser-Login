@@ -1,9 +1,7 @@
 const pool = require('./pool');
 const bcrypt = require('bcrypt');
 
-function User(){
-
-}
+function User(){}
 
 User.prototype = {
     find: function (user = null, callback)
@@ -14,7 +12,12 @@ User.prototype = {
         let sql =`SELECT * FROM users WHERE ${field} = ?`;
         pool.query(sql, user, function(err, result){
             if(err) throw err
-            callback(result);
+
+            if(result.length){
+                callback(result[0]);
+            }else{
+            callback(null);
+            }
         });
     },
     create: function(body, callback){
@@ -24,12 +27,12 @@ User.prototype = {
          var bind = [];
 
          for(prop in body){
-             bind.push(prop);
+             bind.push(body[prop]);
          }
-         let sql = `INSERT INTO users(username, fullname, password)VALUES(?,?,?)`;
-         pool.query(sql, bind, function(err, lastId){
+         let sql = `INSERT INTO users(username, fullname, password)VALUES(?, ?, ?)`;
+         pool.query(sql, bind, function(err, result){
              if(err) throw err;
-             callback(lastId);
+             callback(result.insertId);
          })
     },
     login: function(username, password, callback){
