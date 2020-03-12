@@ -57,7 +57,7 @@ app.js
 Github :  https://github.com/bipan82gill/registeruserlogin
 
 # Application Demo
-![Demo](./public/img/)
+![Demo](./public/img/loginproject.gif)
 
 
 

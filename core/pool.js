@@ -10,8 +10,8 @@ var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
-  password: "e4oe5i8o49wo697z",
-  database: "x589dfj36f9mdef0"
+  password: "root",
+  database: "logindb"
 
 });
 }

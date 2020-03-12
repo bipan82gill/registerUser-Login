@@ -1,7 +1,8 @@
 DROP DATABASE IF EXISTS logindb;
 CREATE DATABASE logindb;
 USE logindb;
- CREATE TABLE users(
+ 
+CREATE TABLE users(
       id int AUTO_INCREMENT,
       username VARCHAR(20),
       fullname VARCHAR(20),
